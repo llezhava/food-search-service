@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_fds:/var/lib/postgresql/data
+    ports:
+      - '1234:5432'
+    command:
+      ['postgres', '-c', 'log_statement=all', '-c', 'log_destination=stderr']
+
+volumes:
+  postgres_fds:
+    name: postgres_foodstyles

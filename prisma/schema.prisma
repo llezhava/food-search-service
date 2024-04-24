@@ -12,3 +12,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+model Diet {
+  id    Int     @id @default(autoincrement())
+  name  String
+}
+
+model DishType  {
+  id    Int     @id @default(autoincrement())
+  name  String
+}
+
+model Brand  {
+  id    Int     @id @default(autoincrement())
+  name  String
+}
+
+model City {
+  id    Int     @id @default(autoincrement())
+  name  String
+}
