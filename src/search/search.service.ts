@@ -8,7 +8,7 @@ import stopWords from './stop-words';
 export class SearchService {
   constructor(private prisma: PrismaService) {}
 
-  getLikeSearches(columnName, terms: string[]) {
+  getWordMatchConditions(columnName, terms: string[]) {
     const cond = terms.reduce((acc, curr, i) => {
       acc += `${i > 0 ? ' or ' : ''} lower(${columnName}) like '%${curr}%'`;
       return acc;
@@ -28,19 +28,19 @@ export class SearchService {
 from "Brand"
    left join lateral (
     select jsonb_agg("Brand") as data from "Brand"
-       where ${this.getLikeSearches('"Brand".name', terms)}
+       where ${this.getWordMatchConditions('"Brand".name', terms)}
     ) brands on true
    left join lateral (
     select jsonb_agg("City") as data from "City"
-       where  ${this.getLikeSearches('"City".name', terms)}
+       where  ${this.getWordMatchConditions('"City".name', terms)}
     ) cities on true
    left join lateral (
     select jsonb_agg("Diet") as data from "Diet"
-       where ${this.getLikeSearches('"Diet".name', terms)}
+       where ${this.getWordMatchConditions('"Diet".name', terms)}
     ) diets on true
    left join lateral (
     select jsonb_agg("DishType") as data from "DishType"
-       where ${this.getLikeSearches('"DishType".name', terms)}
+       where ${this.getWordMatchConditions('"DishType".name', terms)}
     ) dish_types on true
 limit 1;
       `;
