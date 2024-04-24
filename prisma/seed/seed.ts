@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import brandNames from './data/brands';
 import cityNames from './data/cities';
 import dietNames from './data/diets';
-import dishTypeNames from './data/cities';
+import dishTypeNames from './data/dish-types';
 
 // initialize Prisma Client
 const prisma = new PrismaClient();
