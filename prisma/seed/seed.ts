@@ -9,21 +9,52 @@ import dishTypeNames from './data/dish-types';
 const prisma = new PrismaClient();
 
 async function main() {
-  const brands = await prisma.brand.createMany({
-    data: brandNames.map((name) => ({ name })),
-  });
+  const brands = await Promise.all(
+    brandNames.map((name) => {
+      return prisma.brand.upsert({
+        update: {},
+        where: { name } as any,
+        create: {
+          name,
+        },
+      });
+    }),
+  );
+  const cities = await Promise.all(
+    cityNames.map((name) => {
+      return prisma.city.upsert({
+        update: {},
+        where: { name } as any,
+        create: {
+          name,
+        },
+      });
+    }),
+  );
 
-  const cities = await prisma.city.createMany({
-    data: cityNames.map((name) => ({ name })),
-  });
+  const diets = await Promise.all(
+    dietNames.map((name) => {
+      return prisma.diet.upsert({
+        update: {},
+        where: { name } as any,
+        create: {
+          name,
+        },
+      });
+    }),
+  );
 
-  const diets = await prisma.diet.createMany({
-    data: dietNames.map((name) => ({ name })),
-  });
-
-  const dishTypes = await prisma.dishType.createMany({
-    data: dishTypeNames.map((name) => ({ name })),
-  });
+  const dishTypes = await Promise.all(
+    dishTypeNames.map((name) => {
+      return prisma.dishType.upsert({
+        update: {},
+        where: { name } as any,
+        create: {
+          name,
+        },
+      });
+    }),
+  );
 
   console.log('Seeding data results:', { brands, cities, diets, dishTypes });
 }

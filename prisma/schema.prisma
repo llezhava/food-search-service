@@ -16,20 +16,20 @@ datasource db {
 
 model Diet {
   id    Int     @id @default(autoincrement())
-  name  String
+  name  String  @unique
 }
 
 model DishType  {
   id    Int     @id @default(autoincrement())
-  name  String
+  name  String  @unique
 }
 
 model Brand  {
   id    Int     @id @default(autoincrement())
-  name  String
+  name  String  @unique
 }
 
 model City {
   id    Int     @id @default(autoincrement())
-  name  String
+  name  String  @unique
 }
