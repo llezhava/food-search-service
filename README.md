@@ -13,3 +13,4 @@
 
 - I would add unit tests to the `generateEntities` function
 - During seeding I had to resort to `any` type, but data seems to be updating correctly
+- Typescript type naming is not good enough, I would also update them
