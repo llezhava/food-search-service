@@ -11,4 +11,5 @@
 
 ## What I would improve
 
-- I would add unit tests
+- I would add unit tests to the `generateEntities` function
+- During seeding I had to resort to `any` type, but data seems to be updating correctly

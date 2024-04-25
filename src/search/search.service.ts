@@ -50,7 +50,7 @@ export class SearchService {
         limit 1;
       `;
 
-    const pairs = this.generatePairs(query);
+    const pairs = this.generateEntities(query);
 
     return pairs;
   }
@@ -73,7 +73,7 @@ export class SearchService {
       ]
     }
 */
-  generatePairs(data: QueryResult[]) {
+  generateEntities(data: QueryResult[]) {
     const { brands, cities, diets, dish_types } = data[0];
 
     const result: ResultItem[] = [];
